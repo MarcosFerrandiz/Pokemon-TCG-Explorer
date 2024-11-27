@@ -148,16 +148,23 @@ function enableCardMovement() {
     let startX, startY;
     let rotateX = 0, rotateY = 0;
 
-    // Eventos para escritorio
+    // Eventos táctiles
+    card.addEventListener('touchstart', startMoveTouch, {passive: false});
+    card.addEventListener('touchmove', moveTouch, {passive: false});
+    card.addEventListener('touchend', stopMove);
+
+    // Eventos de ratón
     card.addEventListener('mousedown', startMove);
     document.addEventListener('mousemove', move);
     document.addEventListener('mouseup', stopMove);
-    document.addEventListener('mouseleave', stopMove);
 
-    // Eventos para móviles
-    card.addEventListener('touchstart', startMoveTouch);
-    card.addEventListener('touchmove', moveTouch);
-    card.addEventListener('touchend', stopMove);
+    function startMoveTouch(e) {
+        e.preventDefault();
+        isMoving = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        card.style.transition = 'none';
+    }
 
     function startMove(e) {
         isMoving = true;
@@ -166,11 +173,10 @@ function enableCardMovement() {
         card.style.transition = 'none';
     }
 
-    function startMoveTouch(e) {
-        isMoving = true;
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        card.style.transition = 'none';
+    function moveTouch(e) {
+        if (!isMoving) return;
+        e.preventDefault();
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
     }
 
     function move(e) {
@@ -178,27 +184,20 @@ function enableCardMovement() {
         handleMove(e.clientX, e.clientY);
     }
 
-    function moveTouch(e) {
-        if (!isMoving) return;
-        e.preventDefault(); // Prevenir el scroll
-        handleMove(e.touches[0].clientX, e.touches[0].clientY);
-    }
-
     function handleMove(currentX, currentY) {
         const deltaX = currentX - startX;
         const deltaY = currentY - startY;
 
-        // Ajustar la sensibilidad para dispositivos móviles
-        const sensitivity = 0.5;
-        rotateY = Math.max(-20, Math.min(20, deltaX * sensitivity));
-        rotateX = Math.max(-20, Math.min(20, -deltaY * sensitivity));
+        const sensitivity = 0.2;
+        rotateY = Math.max(-15, Math.min(15, deltaX * sensitivity));
+        rotateX = Math.max(-15, Math.min(15, -deltaY * sensitivity));
 
         updateCardTransform();
     }
 
     function stopMove() {
         isMoving = false;
-        card.style.transition = 'transform 0.6s';
+        card.style.transition = 'transform 0.3s';
         rotateX = 0;
         rotateY = 0;
         updateCardTransform();
@@ -209,6 +208,7 @@ function enableCardMovement() {
     }
 }
 
+// Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     loadRandomCards();
 
