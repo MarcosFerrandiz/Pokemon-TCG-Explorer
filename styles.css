@@ -411,6 +411,286 @@ button:hover {
 
 
 
+
+
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        0deg, 
+        transparent, 
+        rgba(255,255,255,0.3), 
+        transparent
+    );
+    transform: rotate(-45deg);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.card-image:hover::before,
+.card-image.active::before {
+    opacity: 1;
+}
+
+
+
+
+.glow-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: color-dodge;
+    z-index: 10;
+}
+
+
+
+
+.holographic-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.holographic-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        115deg, 
+        transparent 0%, 
+        rgba(255,255,255,0.3) 50%, 
+        transparent 100%
+    );
+    transform: rotate(-45deg);
+    animation: holographic-shine 3s infinite linear;
+    opacity: 0.6;
+}
+
+@keyframes holographic-shine {
+    0% {
+        transform: rotate(-45deg) translate(-100%, -100%);
+    }
+    100% {
+        transform: rotate(-45deg) translate(100%, 100%);
+    }
+}
+
+.holographic-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg, 
+        rgba(255,0,0,0.1), 
+        rgba(0,255,0,0.1), 
+        rgba(0,0,255,0.1)
+    );
+    mix-blend-mode: color-dodge;
+    opacity: 0.3;
+}
+
+
+
+
+
+
+
+
+
+
+  
+
+
+.card__front::before,
+.card__front::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      115deg,
+      transparent 0%,
+      var(--color1) 30%,
+      var(--color2) 45%,
+      var(--color3) 60%,
+      var(--color4) 75%,
+      var(--color5) 90%,
+      transparent 100%
+    );
+    background-size: 300% 300%;
+    background-position: 0% 0%;
+    mix-blend-mode: color-dodge;
+    opacity: 0;
+    z-index: 1;
+    transform: translateZ(1px);
+    animation: holoGradient 15s ease infinite;
+}
+  
+.card__front::after {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+    background-position: center;
+    background-size: 180%;
+    mix-blend-mode: color-dodge;
+    opacity: 0;
+    z-index: 2;
+    animation: holoSparkle 20s ease infinite;
+}
+  
+
+
+
+
+
+
+
+
+
+
+.card-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .card {
+    width: 100%;
+    height: 0;
+    padding-bottom: 139.38%; /* Proporción de una carta Pokémon */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+  
+  .card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 5%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+  
+  .card__front {
+    background-color: #ffffff;
+  }
+  
+  .card__front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Estilos específicos para cartas holográficas */
+  .card.holo .card__front::before,
+  .card.holo .card__front::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      115deg,
+      transparent 0%,
+      rgb(0, 231, 255) 30%,
+      rgb(255, 0, 231) 45%,
+      rgb(255, 231, 0) 60%,
+      rgb(0, 212, 255) 75%,
+      rgb(255, 0, 231) 90%,
+      transparent 100%
+    );
+    background-size: 300% 300%;
+    background-position: 0% 0%;
+    mix-blend-mode: color-dodge;
+    opacity: 0;
+    z-index: 1;
+    transform: translateZ(1px);
+    animation: holoGradient 15s ease infinite;
+  }
+  
+  .card.holo .card__front::after {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+    background-position: center;
+    background-size: 180%;
+    mix-blend-mode: color-dodge;
+    opacity: 0;
+    z-index: 2;
+    animation: holoSparkle 20s ease infinite;
+  }
+  
+  @keyframes holoGradient {
+    0%, 100% {
+      opacity: 0;
+      background-position: 0% 0%;
+    }
+    8% {
+      opacity: 0;
+    }
+    10% {
+      background-position: 0% 0%;
+    }
+    19% {
+      opacity: 0.5;
+    }
+    35% {
+      background-position: 100% 100%;
+    }
+    55% {
+      opacity: 0.3;
+    }
+    75% {
+      opacity: 0.5;
+    }
+    100% {
+      background-position: 200% 200%;
+    }
+  }
+  
+  @keyframes holoSparkle {
+    0%, 100% {
+      opacity: 0;
+    }
+    20%, 80% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
 /* Media Queries para Responsividad */
 @media (max-width :768px) {
      .header-container { flex-direction :column ;
