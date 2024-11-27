@@ -1,0 +1,417 @@
+:root {
+    --primary-color: #FF0000;  /* Rojo Pokéball */
+    --secondary-color: #FFDE00;  /* Amarillo Pikachu */
+    --background-color: #F5F5F5;
+    --text-color: #333;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar todos los elementos en el contenedor */
+}
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.pokemon-logo {
+    height: 50px;
+    margin-right: 15px;
+}
+.logo h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+nav {
+    width: 100%;
+}
+.nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar todos los botones en la barra de navegación */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+    gap: 10px; /* Espacio entre los elementos del menú */
+}
+.search-container {
+    display: flex;
+}
+#search-input {
+    padding: 10px 15px;
+    border-radius: 25px 0 0 25px; /* Bordes redondeados a la izquierda */
+}
+#search-button {
+    padding: 10px 15px;
+}
+button {
+   padding :10px ; 
+   background-color:white ; 
+   border:none ; 
+   border-radius :25px ; 
+   cursor:pointer ; 
+   transition :background-color .3s ease ;
+}
+button:hover {
+   background-color:#f0f0f0 ;
+}
+
+/* Estilo para el contenedor de ordenación */
+#sort-container {
+   display:flex ;
+   justify-content:center ;
+   align-items:center ;
+   gap :10px ;
+   width :100% ;
+   max-width :400px ;
+   border-radius :25px; /* Bordes redondeados */
+   background-color :#f9f9f9; /* Fondo claro */
+   padding :10px; /* Espaciado interno */
+   box-shadow :0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+   margin-top :15px; /* Espacio adicional arriba */
+}
+/* Estilo para el select */
+#sort-select {
+   padding :10px ;
+   border-radius :25px; /* Bordes redondeados */
+   border :1px solid #ccc; /* Borde sutil */
+   flex-grow :1; /* Hacer que el select ocupe el espacio disponible */
+}
+/* Estilo para los botones de ordenar */
+#sort-button {
+   padding: 10px 15px;
+   background-color: var(--primary-color); /* Color de fondo del botón */
+   color: white; /* Color del texto */
+   border-radius: 25px; /* Bordes redondeados */
+   border: none; /* Sin borde */
+   cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+}
+#sort-button:hover {
+   background-color: darkred; /* Color al pasar el mouse sobre el botón */
+}
+/* Mejoras para el contenedor de búsqueda */
+.search-container {
+   display:flex ;
+   align-items:center ;
+}
+/* Estilo para el input de búsqueda */
+#search-input {
+   padding:10px 15px ;
+   border-radius :25px 0 0 25px ;
+   border :1px solid #ccc ;
+}
+/* Mejoras para el botón de búsqueda */
+#search-button {
+   padding :10px 15px ;
+   background-color:white ;
+   border-radius :0 25px 25px 0 ;
+   border :1px solid #ccc ;
+   cursor:pointer ;
+   transition :background-color .3s ease ;
+}
+/* Estilo para el icono dentro del botón de búsqueda */
+#search-button i {
+   color :var(--primary-color); /* Rojo por defecto */
+   transition :color .3s ease ;
+}
+/* Efecto hover para el botón de búsqueda */
+#search-button:hover {
+   background-color :var(--primary-color);
+}
+#search-button:hover i {
+   color:white; /* Cambia a blanco al pasar el cursor */
+}
+
+
+
+
+.price {
+   color:#4caf50; 
+}
+.date {
+   color:#757575; 
+}
+
+
+
+.card-image:hover img {
+    transform: scale(1.1) rotateY(10deg); /* Efecto de zoom y rotación al pasar el mouse */
+}
+
+.holographic-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* Fondo blanco semitransparente */
+    pointer-events: none; /* Evitar interacción con este elemento */
+    animation: shimmer 1.5s infinite; /* Animación de brillo */
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+
+.card-image:hover img {
+    transform: scale(1.1) rotateY(10deg); /* Efecto de zoom y rotación al pasar el mouse */
+}
+
+/* Efecto holográfico */
+.holographic-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    opacity: 0.5; /* Opacidad del efecto */
+    pointer-events: none; /* Evitar interacción con este elemento */
+    animation: shimmer 1.5s infinite; /* Animación de brillo */
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+
+
+
+.card-details-container {
+    display: flex; /* Organizar en dos columnas */
+    align-items: flex-start; /* Alinear elementos al inicio */
+}
+
+.card-image {
+    flex: 1; /* Ocupa una porción del espacio */
+    margin-right: 20px; /* Espacio entre la imagen y el texto */
+}
+
+.card-image img {
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+    max-width: 400px; /* Ajusta este valor para hacer la imagen más grande */
+    height: auto; /* Mantener proporciones */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.card-info {
+    flex: 2; /* Ocupa más espacio en comparación con la imagen */
+}
+
+
+
+
+
+
+/* Estilos para las cartas */
+#card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+ }
+ 
+ .card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+ }
+ 
+ .card:hover {
+    transform: scale(1.05);
+ }
+ 
+ .card img {
+    width: 100%;
+    height: auto;
+ }
+ 
+ .card-details {
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    text-align: center;
+ }
+ 
+ /* Estilos del modal */
+ .modal {
+     display: none;
+     position: fixed;
+     z-index: 1000;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgba(0,0,0,0.7);
+ }
+ 
+ .modal-content {
+     background-color: #fefefe;
+     margin: 5% auto;
+     padding: 20px;
+     border-radius: 10px;
+     width: 90%;
+     max-width: 800px;
+     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+ }
+ 
+ .card-details-container {
+     display: flex;
+     flex-wrap: wrap;
+ }
+ 
+ .card-image {
+     flex: 1 1 300px;
+     margin-right: 20px;
+     margin-bottom: 20px;
+ }
+ 
+ .card-image img {
+     width: 100%;
+     height: auto;
+     border-radius: 10px;
+     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+ }
+ 
+ .card-info {
+     flex: 1 1 300px;
+ }
+ 
+ /* Estilo para cerrar el modal */
+ .close {
+     color: #aaa;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+     cursor: pointer;
+ }
+ 
+ .close:hover,
+ .close:focus {
+     color: #000;
+     text-decoration: none;
+     cursor: pointer;
+ }
+
+
+
+
+
+
+ .modal-content {
+    perspective: 1000px;
+    transition: transform 0.3s ease;
+  }
+  
+  .card-image {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    background: linear-gradient(45deg, #f3f3f3, #ddd);
+    mix-blend-mode: multiply;
+  }
+  
+  .card-image:hover {
+    transform: rotateY(-5deg) rotateX(5deg);
+    filter: brightness(1.1) contrast(1.1);
+  }
+  
+  .card-image:hover img {
+    transform: translateZ(20px);
+  }
+
+
+
+
+  .card-image {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+    cursor: grab;
+}
+
+.card-image:active {
+    cursor: grabbing;
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background: linear-gradient(45deg, #f3f3f3, #ddd);
+    mix-blend-mode: multiply;
+    transition: transform 0.1s ease;
+}
+
+
+
+
+
+/* Media Queries para Responsividad */
+@media (max-width :768px) {
+     .header-container { flex-direction :column ;
+     }
+     .nav-group { flex-direction :column; width :100% ;
+     }
+     .search-container { width :100% ;
+     }
+     #sort-container { flex-direction :column; width :100% ;
+     }
+     #sort-select,#sort-button { width :100% ;
+     }
+     .logo h1 { font-size :1.5rem; text-align:center ;
+     }
+     .pokemon-logo { max-height :40px ;
+     }
+}
+@media (max-width :480px) {
+     .logo h1 { font-size :1.2rem ;
+     }
+     .pokemon-logo { max-height :30px ;
+     }
+}
