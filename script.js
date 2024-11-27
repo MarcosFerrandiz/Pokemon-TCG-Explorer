@@ -156,8 +156,8 @@ function enableCardMovement() {
 
     // Eventos para móviles
     card.addEventListener('touchstart', startMoveTouch);
-    document.addEventListener('touchmove', moveTouch);
-    document.addEventListener('touchend', stopMove);
+    card.addEventListener('touchmove', moveTouch);
+    card.addEventListener('touchend', stopMove);
 
     function startMove(e) {
         isMoving = true;
@@ -188,9 +188,10 @@ function enableCardMovement() {
         const deltaX = currentX - startX;
         const deltaY = currentY - startY;
 
-        // Limitar la rotación a un máximo de 20 grados
-        rotateX = Math.max(-20, Math.min(20, -deltaY / 5));
-        rotateY = Math.max(-20, Math.min(20, deltaX / 5));
+        // Ajustar la sensibilidad para dispositivos móviles
+        const sensitivity = 0.5;
+        rotateY = Math.max(-20, Math.min(20, deltaX * sensitivity));
+        rotateX = Math.max(-20, Math.min(20, -deltaY * sensitivity));
 
         updateCardTransform();
     }
