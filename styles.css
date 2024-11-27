@@ -297,18 +297,8 @@ button:hover {
      flex-wrap: wrap;
 }
  
-.card-image {
-     flex: 1 1 300px;
-     margin-right: 20px;
-     margin-bottom: 20px;
-}
- 
-.card-image img {
-     width: 100%;
-     height: auto;
-     border-radius: 10px;
-     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+
+
  
 .card-info {
      flex: 1 1 300px;
@@ -340,15 +330,7 @@ button:hover {
     transition: transform 0.3s ease;
 }
   
-.card-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    background: linear-gradient(45deg, #f3f3f3, #ddd);
-    mix-blend-mode: multiply;
-}
+
   
 .card-image:hover {
     transform: rotateY(-5deg) rotateX(5deg);
@@ -359,12 +341,7 @@ button:hover {
     transform: translateZ(20px);
 }
 
-.card-image {
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease;
-    cursor: grab;
-}
+
 
 .card-image:active {
     cursor: grabbing;
@@ -376,23 +353,7 @@ button:hover {
 
 
 
-.card-container {
-    perspective: 1000px;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-}
 
-.card-image {
-    width: 100%;
-    height: 0;
-    padding-bottom: 139.38%; /* Proporción de una carta Pokémon */
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease; /* Suavizar la transición */
-    touch-action: none;
-    user-select: none;
-}
 
 .card-face {
     position: absolute;
@@ -421,6 +382,32 @@ button:hover {
 
 
 
+
+
+.card-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+.card-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 139.38%; /* Proporción de una carta Pokémon */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s;
+    touch-action: none;
+    user-select: none;
+}
+
+.card-image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
 
 
