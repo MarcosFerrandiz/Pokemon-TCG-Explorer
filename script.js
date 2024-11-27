@@ -143,47 +143,68 @@ function sortCards() {
 }
 
 function enableCardMovement() {
-    const cardImage = document.getElementById('movable-card');
+    const card = document.getElementById('movable-card');
     let isMoving = false;
     let startX, startY;
+    let rotateX = 0, rotateY = 0;
 
-    cardImage.addEventListener('mousedown', startMove);
+    // Eventos para escritorio
+    card.addEventListener('mousedown', startMove);
     document.addEventListener('mousemove', move);
     document.addEventListener('mouseup', stopMove);
     document.addEventListener('mouseleave', stopMove);
+
+    // Eventos para móviles
+    card.addEventListener('touchstart', startMoveTouch);
+    document.addEventListener('touchmove', moveTouch);
+    document.addEventListener('touchend', stopMove);
 
     function startMove(e) {
         isMoving = true;
         startX = e.clientX;
         startY = e.clientY;
-        cardImage.style.transition = 'none';
+        card.style.transition = 'none';
+    }
+
+    function startMoveTouch(e) {
+        isMoving = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        card.style.transition = 'none';
     }
 
     function move(e) {
         if (!isMoving) return;
+        handleMove(e.clientX, e.clientY);
+    }
 
-        const deltaX = e.clientX - startX;
-        const deltaY = e.clientY - startY;
+    function moveTouch(e) {
+        if (!isMoving) return;
+        e.preventDefault(); // Prevenir el scroll
+        handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    }
 
-        const rotateX = -deltaY / 10;
-        const rotateY = deltaX / 10;
+    function handleMove(currentX, currentY) {
+        const deltaX = currentX - startX;
+        const deltaY = currentY - startY;
 
-        cardImage.style.transform = `
-            rotateX(${rotateX}deg) 
-            rotateY(${rotateY}deg) 
-            translateZ(50px)
-        `;
+        // Limitar la rotación a un máximo de 20 grados
+        rotateX = Math.max(-20, Math.min(20, -deltaY / 5));
+        rotateY = Math.max(-20, Math.min(20, deltaX / 5));
 
-        cardImage.style.boxShadow = `
-            ${-deltaX/10}px ${-deltaY/10}px 20px rgba(0,0,0,0.2)
-        `;
+        updateCardTransform();
     }
 
     function stopMove() {
         isMoving = false;
-        cardImage.style.transition = 'transform 0.3s ease';
-        cardImage.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
-        cardImage.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+        card.style.transition = 'transform 0.6s';
+        rotateX = 0;
+        rotateY = 0;
+        updateCardTransform();
+    }
+
+    function updateCardTransform() {
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     }
 }
 
