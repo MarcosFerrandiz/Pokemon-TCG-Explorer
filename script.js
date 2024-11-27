@@ -78,9 +78,12 @@ function displayCards(cards) {
 
     cards.forEach(card => {
         const cardElement = document.createElement('div');
-        cardElement.className = 'card';
+        cardElement.className = 'card-container';
         cardElement.innerHTML = `
-            <img src="${card.images.small}" alt="${card.name}">
+            <div class="card">
+                <img src="${card.images.small}" alt="${card.name}">
+                <h3>${card.name}</h3>
+            </div>
             <div class="card-details">
                 <p class="price">$${card.cardmarket?.prices?.averageSellPrice?.toFixed(2) || 'N/A'}</p>
                 <p class="date">${card.set.releaseDate || 'Fecha desconocida'}</p>
@@ -90,7 +93,6 @@ function displayCards(cards) {
         cardGrid.appendChild(cardElement);
     });
 }
-
 
 
 function addDynamicGlow() {
@@ -136,20 +138,14 @@ function showCardDetails(card) {
     document.getElementById('card-set').textContent = card.set.name;
     document.getElementById('card-artist').textContent = card.artist || 'Desconocido';
 
-    const cardImage = document.getElementById('movable-card');
-    const cardImg = document.getElementById('card-img');
-    
-    cardImg.src = card.images.large;
-    modal.style.display = 'block';
+    // Asignar precio y fecha de lanzamiento
+    const price = card.cardmarket?.prices?.averageSellPrice || 'N/A';
+    const releaseDate = card.set.releaseDate || 'Fecha desconocida';
 
-    // Detectar si la carta es holográfica
-    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
-    if (holographicRarities.includes(card.rarity)) {
-        cardImage.classList.add('holographic-card');
-    } else {
-        cardImage.classList.remove('holographic-card');
-    }
+    document.getElementById('card-price').textContent = `Precio: $${price.toFixed(2)}`;
+    document.getElementById('card-date').textContent = `Fecha de lanzamiento: ${releaseDate}`;
 
+    // Mostrar imagen de la carta
     document.getElementById('card-img').src = card.images.large;
     modal.style.display = 'block';
 
@@ -245,6 +241,7 @@ function enableCardMovement() {
         card.style.transform = 'rotateX(0deg) rotateY(0deg)';
     }
 }
+
 function applyHolographicEffect(card) {
     const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
     const cardElement = document.getElementById('movable-card');
