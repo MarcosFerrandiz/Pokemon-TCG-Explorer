@@ -390,6 +390,8 @@ button:hover {
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s ease; /* Suavizar la transición */
+    touch-action: none;
+    user-select: none;
 }
 
 .card-face {
