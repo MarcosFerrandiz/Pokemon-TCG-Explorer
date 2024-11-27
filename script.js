@@ -91,6 +91,38 @@ function displayCards(cards) {
     });
 }
 
+
+
+function addDynamicGlow() {
+    const card = document.getElementById('movable-card');
+    
+    // Añadir animación de brillo
+    card.classList.add('active');
+    
+    // Crear efecto de brillo dinámico
+    const glowEffect = document.createElement('div');
+    glowEffect.classList.add('glow-effect');
+    card.appendChild(glowEffect);
+
+    // Mover brillo con el mouse
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        glowEffect.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.3), transparent 50%)`;
+    });
+
+    // Eliminar brillo al salir
+    card.addEventListener('mouseleave', () => {
+        card.classList.remove('active');
+        card.removeChild(glowEffect);
+    });
+}
+
+
+
+
 function showCardDetails(card) {
     const primaryType = card.types ? card.types[0] : 'Normal';
     
@@ -104,9 +136,24 @@ function showCardDetails(card) {
     document.getElementById('card-set').textContent = card.set.name;
     document.getElementById('card-artist').textContent = card.artist || 'Desconocido';
 
+    const cardImage = document.getElementById('movable-card');
+    const cardImg = document.getElementById('card-img');
+    
+    cardImg.src = card.images.large;
+    modal.style.display = 'block';
+
+    // Detectar si la carta es holográfica
+    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
+    if (holographicRarities.includes(card.rarity)) {
+        cardImage.classList.add('holographic-card');
+    } else {
+        cardImage.classList.remove('holographic-card');
+    }
+
     document.getElementById('card-img').src = card.images.large;
     modal.style.display = 'block';
 
+    applyHolographicEffect(card);
     enableCardMovement();
 }
 
@@ -144,67 +191,55 @@ function sortCards() {
 
 function enableCardMovement() {
     const card = document.getElementById('movable-card');
-    let isMoving = false;
-    let startX, startY;
-    let rotateX = 0, rotateY = 0;
+    const container = document.getElementById('card-container');
+    let rect = container.getBoundingClientRect();
+    let mouseX, mouseY;
 
-    // Eventos táctiles
-    card.addEventListener('touchstart', startMoveTouch, {passive: false});
-    card.addEventListener('touchmove', moveTouch, {passive: false});
-    card.addEventListener('touchend', stopMove);
+    container.addEventListener('mousemove', onMouseMove);
+    container.addEventListener('mouseleave', onMouseLeave);
+    container.addEventListener('mouseenter', onMouseEnter);
 
-    // Eventos de ratón
-    card.addEventListener('mousedown', startMove);
-    document.addEventListener('mousemove', move);
-    document.addEventListener('mouseup', stopMove);
-
-    function startMoveTouch(e) {
-        e.preventDefault();
-        isMoving = true;
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        card.style.transition = 'none';
-    }
-
-    function startMove(e) {
-        isMoving = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        card.style.transition = 'none';
-    }
-
-    function moveTouch(e) {
-        if (!isMoving) return;
-        e.preventDefault();
-        handleMove(e.touches[0].clientX, e.touches[0].clientY);
-    }
-
-    function move(e) {
-        if (!isMoving) return;
-        handleMove(e.clientX, e.clientY);
-    }
-
-    function handleMove(currentX, currentY) {
-        const deltaX = currentX - startX;
-        const deltaY = currentY - startY;
-
-        const sensitivity = 0.2;
-        rotateY = Math.max(-15, Math.min(15, deltaX * sensitivity));
-        rotateX = Math.max(-15, Math.min(15, -deltaY * sensitivity));
-
-        updateCardTransform();
-    }
-
-    function stopMove() {
-        isMoving = false;
-        card.style.transition = 'transform 0.3s';
-        rotateX = 0;
-        rotateY = 0;
-        updateCardTransform();
-    }
-
-    function updateCardTransform() {
+    function onMouseMove(e) {
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+        
+        const rotateY = mapRange(mouseX, 0, rect.width, -10, 10);
+        const rotateX = mapRange(mouseY, 0, rect.height, -10, 10);
+        
         card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+
+    function onMouseLeave() {
+        card.style.transition = 'transform 0.5s ease-out';
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    }
+
+    function onMouseEnter() {
+        card.style.transition = 'none';
+    }
+
+    function mapRange(value, low1, high1, low2, high2) {
+        return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+    }
+}
+
+function applyHolographicEffect(card) {
+    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
+    const cardElement = document.getElementById('movable-card');
+    
+    if (holographicRarities.includes(card.rarity)) {
+        cardElement.classList.add('holo');
+    } else {
+        cardElement.classList.remove('holo');
+    }
+}
+
+function applyHolographicEffect(card) {
+    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
+    if (holographicRarities.includes(card.rarity)) {
+        document.getElementById('movable-card').classList.add('holo');
+    } else {
+        document.getElementById('movable-card').classList.remove('holo');
     }
 }
 
