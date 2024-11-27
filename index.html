@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon TCG Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Pokémon Logo" class="pokemon-logo">
+                <h1>TCG Explorer</h1>
+            </div>
+            <nav>
+                <div class="nav-group">
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Buscar cartas de Pokémon...">
+                        <button id="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button id="menu-button" class="pokeball-btn">
+                        <i class="fas fa-home"></i> Menú
+                    </button>
+                    <button id="random-button" class="pokeball-btn">
+                        <i class="fas fa-random"></i> Aleatorio
+                    </button>
+                </div>
+            </nav>
+            <div id="sort-container">
+                <select id="sort-select">
+                    <option value="name">Ordenar por Nombre</option>
+                    <option value="date-asc">Fecha (Ascendente)</option>
+                    <option value="date-desc">Fecha (Descendente)</option>
+                    <option value="price-asc">Precio (Ascendente)</option>
+                    <option value="price-desc">Precio (Descendente)</option>
+                </select>
+                <button id="sort-button" class="pokeball-btn">Ordenar</button>
+            </div>
+        </div>
+    </header>
+
+    <main id="card-grid"></main>
+
+    <!-- Modal para mostrar detalles de la carta -->
+    <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="card-details" class="card-details-container">
+                <div class="card-image" id="movable-card">
+                    <img src="" alt="Carta Pokémon" id="card-img">
+                </div>
+                
+                <div class='card-info'>
+                    <h2 id="card-name"></h2>
+                    <p><strong>Tipo:</strong> <span id="card-type"></span></p>
+                    <p><strong>Ataques:</strong> <span id="card-attacks"></span></p>
+                    <p><strong>Debilidades:</strong> <span id="card-weaknesses"></span></p>
+                    <p><strong>Resistencias:</strong> <span id="card-resistances"></span></p>
+                    <p><strong>Costo de Retirada:</strong> <span id="card-retreat-cost"></span></p>
+                    <p><strong>Rareza:</strong> <span id="card-rarity"></span></p>
+                    <p><strong>Set:</strong> <span id="card-set"></span></p>
+                    <p><strong>Artista:</strong> <span id="card-artist"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
