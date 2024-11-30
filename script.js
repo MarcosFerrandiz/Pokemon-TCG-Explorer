@@ -124,33 +124,139 @@ function addDynamicGlow() {
 
 
 
+// Agrega un evento para cerrar el modal
+document.querySelector('.close').addEventListener('click', function() {
+    document.querySelector('.modal').style.display = 'none';
+});
+
 
 function showCardDetails(card) {
+
     const primaryType = card.types ? card.types[0] : 'Normal';
+  const typeElement = document.getElementById('card-type');
+  typeElement.className = `card-type ${primaryType}`;
+  typeElement.style.backgroundImage = `url('path/to/your/sprite-sheet.png')`; // Asegúrate de que la ruta sea correcta
+  typeElement.style.backgroundRepeat = 'no-repeat';
+
     
     document.getElementById('card-name').textContent = card.name;
-    document.getElementById('card-type').textContent = primaryType;
-    document.getElementById('card-attacks').textContent = card.attacks ? card.attacks.map(attack => attack.name).join(', ') : 'Sin ataques';
-    document.getElementById('card-weaknesses').textContent = card.weaknesses ? card.weaknesses.map(w => w.type).join(', ') : 'Ninguna';
-    document.getElementById('card-resistances').textContent = card.resistances ? card.resistances.map(r => r.type).join(', ') : 'Ninguna';
-    document.getElementById('card-retreat-cost').textContent = card.retreatCost ? card.retreatCost.length : '0';
-    document.getElementById('card-rarity').textContent = card.rarity || 'Desconocida';
-    document.getElementById('card-set').textContent = card.set.name;
-    document.getElementById('card-artist').textContent = card.artist || 'Desconocido';
 
-    // Asignar precio y fecha de lanzamiento
-    const price = card.cardmarket?.prices?.averageSellPrice || 'N/A';
-    const releaseDate = card.set.releaseDate || 'Fecha desconocida';
+    // Set the type with the corresponding class
+    typeElement.textContent = primaryType;
+    
+    // Assign the type class for coloring
+	const typeColors = {
+		Fire: 'Fire',
+		Water: 'Water',
+		Grass: 'Grass',
+		Electric: 'Electric',
+		Psychic: 'Psychic',
+		Ice: 'Ice',
+		Dragon: 'Dragon',
+		Dark: 'Dark',
+		Fairy: 'Fairy',
+		Normal:'Normal',
+		Fighting:'Fighting',
+		Flying:'Flying',
+		Poison:'Poison',
+		Ground:'Ground',
+		Rock:'Rock',
+		Bug:'Bug',
+		Ghost:'Ghost',
+		Steel:'Steel'
+	};
 
-    document.getElementById('card-price').textContent = `Precio: $${price.toFixed(2)}`;
-    document.getElementById('card-date').textContent = `Fecha de lanzamiento: ${releaseDate}`;
 
-    // Mostrar imagen de la carta
-    document.getElementById('card-img').src = card.images.large;
-    modal.style.display = 'block';
+    
 
+	typeElement.className = `type ${typeColors[primaryType] || 'Normal'}`;
+
+	document.getElementById('card-attacks').textContent = card.attacks ? card.attacks.map(attack => attack.name).join(', ') : 'Sin ataques';
+	document.getElementById('card-weaknesses').textContent = card.weaknesses ? card.weaknesses.map(w => w.type).join(', ') : 'Ninguna';
+	document.getElementById('card-resistances').textContent = card.resistances ? card.resistances.map(r => r.type).join(', ') : 'Ninguna';
+	document.getElementById('card-retreat-cost').textContent = card.retreatCost ? card.retreatCost.length : '0';
+	document.getElementById('card-rarity').textContent = card.rarity || 'Desconocida';
+	document.getElementById('card-set').textContent = card.set.name;
+	document.getElementById('card-artist').textContent = card.artist || 'Desconocido';
+	document.getElementById('card-hp').textContent = `HP ${card.hp}`;
+	const price = card.cardmarket?.prices?.averageSellPrice || 'N/A';
+	const releaseDate = card.set.releaseDate || 'Fecha desconocida';
+
+	document.getElementById('card-price').textContent = `Precio: $${price.toFixed(2)}`;
+	document.getElementById('card-date').textContent = `Fecha de lanzamiento: ${releaseDate}`;
+
+	document.getElementById('card-img').src = card.images.large;
+
+	modal.style.display = 'block'; // Mostrar modal
+
+    // Set modal border color based on Pokémon type
+	const modalContent = document.querySelector('.modal-content');
+	modalContent.className = `modal-content type-border ${primaryType}`; // Add type class for border color
+
+    const cardAttacksContainer = document.getElementById('card-attacks'); // Contenedor de ataques
+    const cardWeaknessesContainer = document.getElementById('card-weaknesses'); // Contenedor de debilidades
+    const cardResistancesContainer = document.getElementById('card-resistances'); // Contenedor de resistencias
+
+    
+    const attacks = card.attacks || [];
+    cardAttacksContainer.innerHTML = ''; // Limpiar el contenedor de ataques
+    attacks.forEach(attack => {
+        const attackElement = document.createElement('div'); // Cambiar a un div para agrupar
+    
+        // Crear un elemento para el nombre del ataque
+        const attackNameElement = document.createElement('p');
+        attackNameElement.textContent = attack.name; // Solo el nombre del ataque
+    
+        // Crear un elemento para el coste
+        const costElement = document.createElement('p'); // Crear un nuevo párrafo para el coste
+        const cost = attack.cost ? attack.cost.map(costType => {
+            const costImage = document.createElement('span');
+            costImage.className = `type-element ${costType}`; // Clase para el tipo
+            return costImage; // Devuelve el elemento de imagen
+        }) : ['N/A']; // Coste de energía
+    
+        // Añadir texto "Coste: " antes de las imágenes
+        cost.forEach(costType => {
+            costElement.appendChild(costType); // Añadir cada imagen al párrafo de coste
+        });
+    
+        attackElement.appendChild(attackNameElement); // Añadir nombre del ataque al contenedor
+        attackElement.appendChild(costElement); // Añadir coste debajo del ataque
+        cardAttacksContainer.appendChild(attackElement); // Agregar el ataque al contenedor principal
+    });
+  
+    // Debilidades
+const weaknesses = card.weaknesses || [];
+cardWeaknessesContainer.innerHTML = ''; // Limpiar el contenedor de debilidades
+weaknesses.forEach(weakness => {
+    const weaknessElement = document.createElement('div'); // Cambiar a un div para agrupar
+    const typeElement = document.createElement('span');
+    typeElement.className = `type-element ${weakness.type}`; // Clase para el tipo
+
+    weaknessElement.appendChild(typeElement); // Añadir la imagen al contenedor de debilidades
+    weaknessElement.appendChild(document.createTextNode(` ${weakness.value}`)); // Añadir multiplicador
+    cardWeaknessesContainer.appendChild(weaknessElement); // Agregar al contenedor
+});
+
+// Resistencias
+const resistances = card.resistances || [];
+cardResistancesContainer.innerHTML = ''; // Limpiar el contenedor de resistencias
+resistances.forEach(resistance => {
+    const resistanceElement = document.createElement('div'); // Cambiar a un div para agrupar
+    const typeElement = document.createElement('span');
+    typeElement.className = `type-element ${resistance.type}`; // Clase para el tipo
+
+    resistanceElement.appendChild(typeElement); // Añadir la imagen al contenedor de resistencias
+    resistanceElement.appendChild(document.createTextNode(` ${resistance.value}`)); // Añadir multiplicador
+    cardResistancesContainer.appendChild(resistanceElement); // Agregar al contenedor
+});
+
+
+
+
+    showModal();
+	enableCardMovement(); // Enable movement for the card in modal
     applyHolographicEffect(card);
-    enableCardMovement();
 }
 
 function closeModal() {
@@ -192,12 +298,12 @@ function enableCardMovement() {
     let isMoving = false;
     let startX, startY;
 
-    // Eventos para escritorio
+    // Events for desktop
     container.addEventListener('mousedown', startMove);
     document.addEventListener('mousemove', move);
     document.addEventListener('mouseup', stopMove);
 
-    // Eventos para móviles
+    // Events for mobile
     container.addEventListener('touchstart', startMoveTouch);
     container.addEventListener('touchmove', moveTouch);
     container.addEventListener('touchend', stopMove);
@@ -206,14 +312,14 @@ function enableCardMovement() {
         isMoving = true;
         startX = e.clientX - rect.left;
         startY = e.clientY - rect.top;
-        card.style.transition = 'none';
+        card.style.transition = 'none'; // Disable transition for smooth dragging
     }
 
     function startMoveTouch(e) {
         isMoving = true;
         startX = e.touches[0].clientX - rect.left;
         startY = e.touches[0].clientY - rect.top;
-        card.style.transition = 'none';
+        card.style.transition = 'none'; // Disable transition for smooth dragging
     }
 
     function move(e) {
@@ -223,24 +329,44 @@ function enableCardMovement() {
 
     function moveTouch(e) {
         if (!isMoving) return;
-        e.preventDefault();
+        e.preventDefault(); // Prevent default touch behavior
         updateCardPosition(e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top);
     }
 
     function updateCardPosition(currentX, currentY) {
         const deltaX = currentX - startX;
         const deltaY = currentY - startY;
-        const rotateY = deltaX / rect.width * 20;
-        const rotateX = -deltaY / rect.height * 20;
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const rotateY = deltaX / rect.width * 20; // Rotate based on horizontal movement
+        const rotateX = -deltaY / rect.height * 20; // Rotate based on vertical movement
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`; // Apply rotation
     }
 
     function stopMove() {
         isMoving = false;
-        card.style.transition = 'transform 0.5s ease-out';
+        card.style.transition = 'transform 0.5s ease-out'; // Smooth transition back to original position
         card.style.transform = 'rotateX(0deg) rotateY(0deg)';
     }
 }
+
+
+function showModal() {
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    const modalContent = document.querySelector('.modal-content');
+    modalContent.style.top = `${(window.innerHeight - modalContent.offsetHeight) / 2}px`;
+    modalContent.style.left = `${(window.innerWidth - modalContent.offsetWidth) / 2}px`;
+  }
+  
+
+function closeModal() {
+    // Hide the modal
+    modal.style.display = 'none';
+
+    // Enable scrolling on the body
+    document.body.style.overflow = 'auto';
+}
+
+
 
 function applyHolographicEffect(card) {
     const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
@@ -254,13 +380,63 @@ function applyHolographicEffect(card) {
 }
 
 function applyHolographicEffect(card) {
-    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
+    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX', 'Rare Holo EX'];
     if (holographicRarities.includes(card.rarity)) {
         document.getElementById('movable-card').classList.add('holo');
     } else {
         document.getElementById('movable-card').classList.remove('holo');
     }
 }
+
+
+
+
+
+
+
+async function fetchPokemonCard(cardName) {
+    try {
+        // Solicitar los datos de la carta de Pokémon desde la API
+        const response = await fetch(`${apiUrl}?q=name:${cardName}`);
+        const data = await response.json();
+
+        // Asegurarse de que se obtuvo una carta
+        if (data.data.length > 0) {
+            const card = data.data[0];
+
+            // Extraer los datos necesarios
+            const name = card.name;
+            const hp = card.hp;
+            const type = card.types ? card.types.join(', ') : 'Unknown';
+            const move = card.attacks && card.attacks[0] ? card.attacks[0].name : 'No Move';
+            const moveDescription = card.attacks && card.attacks[0] ? card.attacks[0].text : 'No Description';
+            const weakness = card.weaknesses ? card.weaknesses.map(w => `${w.type} x${w.value}`).join(', ') : 'None';
+            const resistance = card.resistances ? card.resistances.map(r => r.type).join(', ') : 'None';
+            const retreatCost = card.retreatCost || 0;
+
+            // Actualizar los elementos del DOM
+            document.getElementById('pokemon-name').innerText = name;
+            document.getElementById('pokemon-hp').innerText = `HP ${hp}`;
+            document.getElementById('pokemon-type').innerText = `Type: ${type}`;
+            document.getElementById('pokemon-move').innerText = move;
+            document.getElementById('move-description').innerText = moveDescription;
+            document.getElementById('pokemon-weakness').innerText = weakness;
+            document.getElementById('pokemon-resistance').innerText = resistance;
+            document.getElementById('pokemon-retreat').innerText = retreatCost;
+        } else {
+            alert('Carta no encontrada.');
+        }
+    } catch (error) {
+        console.error('Error al obtener los datos de la carta:', error);
+    }
+}
+
+// Llamar a la función con el nombre del Pokémon (puedes cambiarlo por otros nombres)
+fetchPokemonCard('Sprigatito');
+
+
+
+
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
@@ -283,3 +459,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
