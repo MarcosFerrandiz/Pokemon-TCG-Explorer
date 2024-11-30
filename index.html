@@ -50,26 +50,53 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <div id="card-container" class="card-container">
-                <div id="movable-card" class="card">
-                    <div class="card__face card__front">
-                        <img id="card-img" src="" alt="Carta Pokémon">
+            <div class="modal-body">
+                <div class="card-container" id="card-container">
+                    <div id="movable-card" class="card">
+                        <div class="card__face card__front">
+                            <img id="card-img" src="" alt="Carta Pokémon">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="card-details">
-                <h2 id="card-name"></h2>
-                <p>Tipo: <span id="card-type"></span></p>
-                <p>Ataques: <span id="card-attacks"></span></p>
-                <p>Debilidades: <span id="card-weaknesses"></span></p>
-                <p>Resistencias: <span id="card-resistances"></span></p>
-                <p>Costo de Retirada: <span id="card-retreat-cost"></span></p>
-                <p>Rareza: <span id="card-rarity"></span></p>
-                <p>Set: <span id="card-set"></span></p>
-                <p>Artista: <span id="card-artist"></span></p>
-                <!-- Añade estas dos líneas para el precio y la fecha -->
-                <p>Precio: <span id="card-price"></span></p>
-                <p>Fecha de lanzamiento: <span id="card-date"></span></p>
+
+                
+                <div id="card-details" class="card-details-modal">
+                    <h2 id="card-name"></h2>
+
+
+                    <div class="card-info">
+                      <div class="card-info-section">
+                        <h3>Información Básica</h3>
+                        <p>Tipo: <span id="card-type"></span></p>
+                        <p>HP: <span id="card-hp"></span></p>
+                        <p>Rareza: <span id="card-rarity"></span></p>
+                        <p>Set: <span id="card-set"></span></p>
+                        <p>Artista: <span id="card-artist"></span></p>
+                      </div>
+
+                      <div class="card-info-section">
+                        <h3>Ataques</h3>
+                        <div id="card-attacks"></div>
+                      </div>
+
+                      <div class="card-info-section">
+                        <h3>Debilidades y Resistencias</h3>
+                        <p>Debilidades: <span id="card-weaknesses"></span></p>
+                        <p>Resistencias: <span id="card-resistances"></span></p>
+                      </div>
+                      <div class="card-info-section">
+                        <h3>Costo de Retirada</h3>
+                        <div id="card-retreat-cost"></div>
+                      </div>
+                      <div class="card-info-section">
+                        <div class="card-details">
+                            <p class="price"><span id="card-price">0.00</span></p>
+                            <p class="date"><span id="card-date">Fecha desconocida</span></p>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
