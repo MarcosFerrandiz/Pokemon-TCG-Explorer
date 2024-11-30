@@ -139,6 +139,7 @@ body {
   
   .card-info-section h3 {
     margin-bottom: 10px;
+    font-size: 5.4vw;
   }
   
   /* Type Colors */
@@ -1077,8 +1078,40 @@ button:hover {
       opacity: 0.6;
     }
 }
+.holographic {
+    color: transparent;
+    background-image: linear-gradient(
+      115deg,
+      transparent 0%,
+      rgb(0, 231, 255) 30%,
+      rgb(255, 0, 231) 45%,
+      rgb(255, 231, 0) 60%,
+      rgb(0, 212, 255) 75%,
+      rgb(255, 0, 231) 90%,
+      transparent 100%
+    );
+    background-clip: text;
+    background-size: 300% 300%;
+    animation: color 4s linear infinite;
+}
 
 
+@keyframes color {
+    from {
+        background-position: 0% 0%;
+    }
+
+    to {
+        background-position: 100% 50%;
+    }
+}
+
+
+
+
+#card-name{
+    font-size: 9vw;
+}
 
 
 
