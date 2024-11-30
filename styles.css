@@ -15,6 +15,161 @@ body {
     color: var(--text-color);
     line-height: 1.6;
 }
+
+
+/*-------------------------------*/
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  
+  .modal-content.type-border {
+    border: 5px solid;
+  }
+  
+  .modal-content.type-border.Fire {
+    border-color: #FF5733;
+  }
+  
+  .modal-content.type-border.Water {
+    border-color: #3498DB;
+  }
+  
+  .modal-content.type-border.Grass {
+    border-color: #58D68D;
+  }
+  
+  .modal-content.type-border.Electric {
+    border-color: #F4D03F;
+  }
+  
+  .modal-content.type-border.Psychic {
+    border-color: #AF7AC5;
+  }
+  
+  .modal-content.type-border.Ice {
+    border-color: #85C1E9;
+  }
+  
+  .modal-content.type-border.Dragon {
+    border-color: #D35400;
+  }
+  
+  .modal-content.type-border.Dark {
+    border-color: #34495E;
+  }
+  
+  .modal-content.type-border.Fairy {
+    border-color: #F1948A;
+  }
+  
+  .modal-content.type-border.Normal {
+    border-color: #AAB7B8;
+  }
+  
+  .modal-content.type-border.Fighting {
+    border-color: #CD6155;
+  }
+  
+  .modal-content.type-border.Flying {
+    border-color: #AED6F1;
+  }
+  
+  .modal-content.type-border.Poison {
+    border-color: #BB8FCE;
+  }
+  
+  .modal-content.type-border.Ground {
+    border-color: #D7BDE2;
+  }
+  
+  .modal-content.type-border.Rock {
+    border-color: #B7950B;
+  }
+  
+  .modal-content.type-border.Bug {
+    border-color: #82E0AA;
+  }
+  
+  .modal-content.type-border.Ghost {
+    border-color: #7D3C98;
+  }
+  
+  .modal-content.type-border.Steel {
+    border-color: #85929E;
+  }
+  
+  /* Card Details Styles */
+  .card-details-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .card-info {
+    width: 100%;
+    display: grid;
+
+  }
+  
+  .card-info-section {
+    margin: 20px;
+    width: 100%;
+    background-color: #ffffff; /* Fondo blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-top: 10px; /* Espacio superior */
+
+    
+  }
+  
+  
+  .card-info-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  /* Type Colors */
+  .type {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+  }
+  
+
+  
+  /* Close Button Styles */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+
+
+
+
 header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
@@ -144,15 +299,12 @@ button:hover {
 }
 
 
-
+/*-------------------------------*/
 
 
 .date {
    color:#757575; 
 }
-
-
-
 .card-image:hover img {
     transform: scale(1.1) rotateY(10deg); /* Efecto de zoom y rotación al pasar el mouse */
 }
@@ -168,19 +320,9 @@ button:hover {
     animation: shimmer 1.5s infinite; /* Animación de brillo */
 }
 
-@keyframes shimmer {
-    0% {
-        background-position: -200% 0;
-    }
-    100% {
-        background-position: 200% 0;
-    }
-}
 
+/*-------------------------------*/
 
-.card-image:hover img {
-    transform: scale(1.1) rotateY(10deg); /* Efecto de zoom y rotación al pasar el mouse */
-}
 
 /* Efecto holográfico */
 .holographic-effect {
@@ -206,11 +348,11 @@ button:hover {
 
 
 
+/*-------------------------------*/
 
-.card-details-container {
-    display: flex; /* Organizar en dos columnas */
-    align-items: flex-start; /* Alinear elementos al inicio */
-}
+
+
+
 
 .card-image {
     flex: 1; /* Ocupa una porción del espacio */
@@ -229,68 +371,56 @@ button:hover {
 }
 
 
-
-
-
-
-.card-container {
-    display: flex;
-    flex-direction: column; /* Apilar elementos verticalmente */
-    align-items: center; /* Centrar elementos horizontalmente */
-    margin: 20px; /* Espacio entre cartas */
-}
-
-.card {
-    position: relative;
-    width: 160px; /* Ancho de la carta */
-    height: 240px; /* Altura de la carta */
-    overflow: hidden; /* Asegura que nada se desborde */
-    border-radius: 12px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Sombra suave para profundidad */
-    transition: transform 0.3s ease; /* Transición suave al pasar el mouse */
-    background-color: #ffffff; /* Fondo blanco para la carta */
-}
+/*-------------------------------*/
 
 .card:hover {
     transform: translateY(-5px); /* Eleva ligeramente la carta al pasar el mouse */
+    transform: scale(1.05);
 }
-
-.card img {
-    width: 100%;
-    height: auto; /* Mantiene la proporción de la imagen */
-    border-bottom: 2px solid #007bff; /* Línea inferior para separar imagen y detalles */
-}
-
 .card h3 {
     font-size: 16px; /* Tamaño del texto del nombre de la carta */
     margin: 10px 0; /* Espacio alrededor del nombre */
     color: #007bff; /* Color azul para el nombre de la carta */
 }
-
 .card-details {
     width: 100%; /* Asegura que el cuadrado tenga el mismo ancho que la carta */
-    text-align: center; /* Centra el texto en los detalles */
-    margin-top: -5px; /* Espacio negativo para unir con la carta superior */
     padding: 10px; /* Espaciado interno en los detalles */
     background-color: #f8f9fa; /* Fondo claro para los detalles */
     border-radius: 0 0 12px 12px; /* Esquinas redondeadas en la parte inferior */
     box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra interna para dar profundidad al fondo */
+    text-align: center; /* Centrar texto */
 }
-
 .card-details .price,
 .card-details .date {
-    font-size: 14px; /* Tamaño del texto para precio y fecha */
-    color: #007bff; /* Color azul para el precio */
+    font-family: 'Roboto', sans-serif; /* Tipografía moderna */
+    font-size: 1rem; /* Tamaño de fuente normal */
+    color: #757575; /* Color gris para la fecha */
+    margin-top: 5px; /* Espacio superior entre precio y fecha */
 }
-
 .card-details .price {
-    font-size: 14px; /* Tamaño del texto para precio */
-    color: #28a745; /* Color verde para el precio */
-    font-weight: bold; /* Negrita para el precio */
+    font-family: 'Roboto', sans-serif; /* Tipografía moderna */
+    font-size: 1.5rem; /* Tamaño de fuente mayor para el precio */
+    color: #27ae60; /* Color verde para el precio */
+    font-weight: bold; /* Negrita para destacar el precio */
 }
 
 
+.card-price{
+    font-family: 'Arial', sans-serif; /* Tipografía moderna */
+    font-size: 1.5rem; /* Tamaño de fuente mayor para el precio */
+    color: #27ae60; /* Color verde para el precio */
+    font-weight: bold; /* Negrita para destacar el precio */
+    margin-bottom: 5px; /* Espacio inferior entre precio y fecha */
+}
 
+.card-date{
+    font-family: 'Arial', sans-serif; /* Tipografía moderna */
+    font-size: 1rem; /* Tamaño de fuente normal */
+    color: #757575; /* Color gris para la fecha */
+}
+
+
+/*-------------------------------*/
 
 
 /* Estilos para las cartas */
@@ -301,34 +431,11 @@ button:hover {
     padding: 20px;
     max-width: 1200px;
     margin: auto;
-}
- 
-.card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
- 
-.card:hover {
-    transform: scale(1.05);
-}
- 
+} 
 .card img {
     width: 100%;
     height: auto;
 }
- 
-
-
-.card-details {
-    text-align: center; /* Centrar texto */
-    margin-top: 10px; /* Espacio entre imagen y detalles */
-}
-
-
 .card-details .date {
     font-size: 14px; /* Tamaño del texto */
     color: #555; /* Color del texto */
@@ -336,34 +443,76 @@ button:hover {
 }
 
 
+/*-------------------------------*/
 
- /* Estilos del modal */
+
+.modal-body {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align items at the start vertically */
+    height: 100%; /* Full height of modal */
+    width: 100%;
+}
+#card-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text within paragraphs */
+    width: 100%;
+}
+
+
+/*-------------------------------*/
+
+
+/* Estilos del modal */
 .modal {
-     display: none;
-     position: fixed;
-     z-index: 1000;
-     left: 0;
-     top: 0;
-     width: 100%;
-     height: 100%;
-     overflow: auto;
-     background-color: rgba(0,0,0,0.7);
+    display: none; /* Initially hidden */
+    position: fixed; /* Fixed position to cover the entire screen */
+    z-index: 1000; /* High z-index to stay above other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Prevent scrolling of the modal */
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
 }
- 
+
 .modal-content {
-     background-color: #fefefe;
-     margin: 5% auto;
-     padding: 20px;
-     border-radius: 10px;
-     width: 90%;
-     max-width: 800px;
-     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 75%;
+    max-width: 1100px;
+    border: 5px solid transparent; /* Border that will be changed dynamically */
+}
+
+
+
+.card-container {
+    display: flex;
+    flex-direction: column; /* Apilar elementos verticalmente */
+    align-items: center; /* Centrar elementos horizontalmente */
+    perspective: 1000px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.card-details-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
  
-.card-details-container {
-     display: flex;
-     flex-wrap: wrap;
-}
+
  
 
 
@@ -374,11 +523,12 @@ button:hover {
  
  /* Estilo para cerrar el modal */
 .close {
-     color: #aaa;
-     float: right;
-     font-size: 28px;
-     font-weight: bold;
-     cursor: pointer;
+    color: #aaa;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    height: fit-content;
 }
  
 .close:hover,
@@ -392,12 +542,6 @@ button:hover {
 
 
 
-
-.modal-content {
-    perspective: 1000px;
-    transition: transform 0.3s ease;
-}
-  
 
   
 .card-image:hover {
@@ -414,6 +558,200 @@ button:hover {
 .card-image:active {
     cursor: grabbing;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Classes for different Pokémon types */
+.type-border {
+    border-color: #AAB7B8; /* Default color (Normal) */
+}
+.type-border.Fire {border-color: #FF5733;}
+.type-border.Water {border-color: #3498DB;}
+.type-border.Grass {border-color: #58D68D;}
+.type-border.Electric {border-color: #F4D03F;}
+.type-border.Psychic {border-color: #AF7AC5;}
+.type-border.Ice {border-color: #85C1E9;}
+.type-border.Dragon {border-color: #D35400;}
+.type-border.Dark {border-color: #34495E;}
+.type-border.Darkness {border-color: #34495E;}
+.type-border.Fairy {border-color: #F1948A;}
+.type-border.Normal {border-color: #AAB7B8;}
+.type-border.Fighting {border-color: #CD6155;}
+.type-border.Flying {border-color: #AED6F1;}
+.type-border.Poison {border-color: #BB8FCE;}
+.type-border.Ground {border-color: #D7BDE2;}
+.type-border.Rock {border-color: #B7950B;}
+.type-border.Bug {border-color: #82E0AA;}
+.type-border.Ghost {border-color: #7D3C98;}
+.type-border.Steel {border-color: #85929E;}
+.type-border.Metal {border-color: #85929E;}
+.type-border.Lightning {border-color: #e4cf14;}
+
+
+
+.type {
+    font-weight: bold; /* Negrita para el tipo */
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.type.Fire { color: #FF5733; }
+.type.Water { color: #3498DB; }
+.type.Grass { color: #58D68D; }
+.type.Electric { color: #F4D03F; }
+.type.Psychic { color: #AF7AC5; }
+.type.Ice { color: #85C1E9; }
+.type.Dragon { color: #D35400; }
+.type.Dark { color: #34495E; }
+.type.Fairy { color: #F1948A; }
+.type.Normal { color: #AAB7B8; }
+.type.Fighting { color: #CD6155; }
+.type.Flying { color: #AED6F1; }
+.type.Poison { color: #BB8FCE; }
+.type.Ground { color: #D7BDE2; }
+.type.Rock { color: #B7950B; }
+.type.Bug { color: #82E0AA; }
+.type.Ghost { color: #7D3C98; }
+.type.Steel { color: #85929E; }
+
+
+
+#card-retreat-cost {
+    display: flex; /* Usar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    margin-top: 10px; /* Espacio entre el nombre y el coste */
+  }
+
+
+.type-element {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-repeat: no-repeat; /* No repetir la imagen */
+}
+
+.cost-container {
+    display: flex; /* Usar flexbox para centrar */
+    justify-content: center; /* Centrar horizontalmente */
+    margin-top: 5px; /* Espacio entre el nombre del ataque y los costes */
+}
+
+
+.type-element.Fire {background-image: url(img/fire.png); background-size: 20px 20px;}
+.type-element.Colorless {background-image: url(img/colorless.png); background-size: 20px 20px;}
+.type-element.Lightning {background-image: url(img/lightning.png); background-size: 20px 20px;}
+.type-element.Dragon {background-image: url(img/dragon.png); background-size: 20px 20px;}
+.type-element.Darkness {background-image: url(img/darkness.png); background-size: 20px 20px;}
+.type-element.Fairy {background-image: url(img/fairy.png); background-size: 20px 20px;}
+.type-element.Fighting {background-image: url(img/fighting.png); background-size: 20px 20px;}
+.type-element.Grass {background-image: url(img/grass.png); background-size: 20px 20px;}
+.type-element.Metal {background-image: url(img/metal.png); background-size: 20px 20px;}
+.type-element.Psychic {background-image: url(img/psychic.png); background-size: 20px 20px;}
+.type-element.Water {background-image: url(img/water.png); background-size: 20px 20px;}
+
+
+
+
+.card {
+    background: white;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.card-body {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    font-size: 0.9rem;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos generales para los detalles */
+
+
+.card-details-modal h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinear texto a la izquierda */
+    text-align: left; /* Align text left */
+    margin-top: 20px;
+}
+
+.card-info-container p {
+    font-size: 18px; /* Tamaño del texto para los detalles */
+    margin-bottom: 15px; /* Espacio entre cada detalle */
+    width: 100%; /* Ensure full width for centering */
+
+}
+
+.card-info-container p span {
+    font-weight: bold; /* Negrita para los valores de los detalles */
+}
+
+
 
 
 
@@ -451,13 +789,6 @@ button:hover {
 
 
 
-
-.card-container {
-    perspective: 1000px;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-}
 
 .card-image {
     width: 100%;
@@ -635,24 +966,21 @@ button:hover {
 
 
 
-.card-container {
-    perspective: 1000px;
-    width: 100%;
-    max-width: 400px;
-    margin: auto;
-  }
   
-  .card {
+.card {
     width: 100%;
     height: 0;
     padding-bottom: 139.38%; /* Proporción de una carta Pokémon */
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-  }
+    overflow: hidden; /* Asegura que nada se desborde */
+    border-radius: 12px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Sombra suave para profundidad */
+    background-color: #ffffff; /* Fondo blanco para la carta */
+}
   
-  .card__face {
+.card__face {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -660,21 +988,21 @@ button:hover {
     border-radius: 5%;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  }
+}
   
-  .card__front {
+.card__front {
     background-color: #ffffff;
-  }
+}
   
-  .card__front img {
+.card__front img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+}
   
-  /* Estilos específicos para cartas holográficas */
-  .card.holo .card__front::before,
-  .card.holo .card__front::after {
+/* Estilos específicos para cartas holográficas */
+.card.holo .card__front::before,
+.card.holo .card__front::after {
     content: "";
     position: absolute;
     left: 0;
@@ -698,9 +1026,9 @@ button:hover {
     z-index: 1;
     transform: translateZ(1px);
     animation: holoGradient 15s ease infinite;
-  }
+}
   
-  .card.holo .card__front::after {
+.card.holo .card__front::after {
     background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
     background-position: center;
     background-size: 180%;
@@ -708,9 +1036,9 @@ button:hover {
     opacity: 0;
     z-index: 2;
     animation: holoSparkle 20s ease infinite;
-  }
+}
   
-  @keyframes holoGradient {
+@keyframes holoGradient {
     0%, 100% {
       opacity: 0;
       background-position: 0% 0%;
@@ -736,9 +1064,9 @@ button:hover {
     100% {
       background-position: 200% 200%;
     }
-  }
+}
   
-  @keyframes holoSparkle {
+@keyframes holoSparkle {
     0%, 100% {
       opacity: 0;
     }
@@ -748,7 +1076,7 @@ button:hover {
     50% {
       opacity: 0.6;
     }
-  }
+}
 
 
 
@@ -760,7 +1088,7 @@ button:hover {
 
 
 /* Media Queries para Responsividad */
-@media (max-width :768px) {
+@media (max-width :530px) {
      .header-container { flex-direction :column ;
      }
      .nav-group { flex-direction :column; width :100% ;
@@ -775,10 +1103,94 @@ button:hover {
      }
      .pokemon-logo { max-height :40px ;
      }
+     #search-input{
+        width: 80%;
+        margin-left: auto;
+     }
+     #search-button{
+        margin-right: auto;
+     }
+     .modal{
+        overflow: scroll;
+     }
+     .modal-body{
+        display: grid;
+     }
 }
 @media (max-width :480px) {
      .logo h1 { font-size :1.2rem ;
      }
      .pokemon-logo { max-height :30px ;
      }
+}
+
+
+@media (max-width: 768px) {
+    .card-info-section {
+        display: grid; /* Cambiar a grid */
+        grid-template-columns: 1fr; /* Una columna en pantallas más pequeñas */
+    }
+
+    .card-details {
+        grid-column: span 1; /* Ocupa una columna */
+    }
+
+    .attacks,
+    .weaknesses,
+    .resistances,
+    .price-date {
+        grid-column: span 1; /* Ocupa una columna cada uno */
+        margin-top: 10px; /* Espacio entre secciones */
+    }
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Ajustar el ancho del modal en pantallas más pequeñas */
+        margin: auto; /* Centrar el modal */
+        margin-top: 90%;
+        display: grid;
+        justify-content: normal;
+    }
+
+    .card-info-section {
+        display: grid; /* Usar grid para la disposición */
+        grid-template-columns: 1fr; /* Una columna en pantallas más pequeñas */
+        margin: 0px;
+        margin-top: 10px;
+    }
+
+    .card-details,
+    .attacks,
+    .weaknesses,
+    .resistances,
+    .price-date {
+        grid-column: span 1; /* Cada sección ocupa una columna */
+        margin-top: 10px; /* Espacio entre secciones */
+    }
+
+    
+}
+
+@media (max-width: 480px) {
+    .price,
+    .date {
+        font-size: 1rem; /* Tamaño de fuente más pequeño en pantallas muy pequeñas */
+    }
+
+    .modal-content {
+        padding: 10px; /* Menos espaciado en pantallas muy pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .price,
+    .date {
+        font-size: 1rem; /* Tamaño de fuente más pequeño en pantallas muy pequeñas */
+    }
+
+    .card-info-section {
+        padding: 10px; /* Menos espaciado en pantallas muy pequeñas */
+    }
 }
