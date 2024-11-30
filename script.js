@@ -198,6 +198,25 @@ function showCardDetails(card) {
     const cardResistancesContainer = document.getElementById('card-resistances'); // Contenedor de resistencias
 
     
+    document.getElementById('card-name').textContent = card.name;
+
+    // Verificar si la carta es holográfica
+    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX', 'Rare Holo EX'];
+    const cardNameElement = document.getElementById('card-name');
+
+    if (holographicRarities.includes(card.rarity)) {
+        cardNameElement.classList.add('holographic'); // Añadir clase holográfica
+    } else {
+        cardNameElement.classList.remove('holographic'); // Remover clase si no es holográfica
+    }
+
+
+
+
+
+
+
+
     const attacks = card.attacks || [];
     cardAttacksContainer.innerHTML = ''; // Limpiar el contenedor de ataques
     attacks.forEach(attack => {
@@ -369,7 +388,7 @@ function closeModal() {
 
 
 function applyHolographicEffect(card) {
-    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX'];
+    const holographicRarities = ['Rare Holo', 'Rare Holo GX', 'Rare Holo V', 'Rare Holo VMAX', 'Rare Holo EX'];
     const cardElement = document.getElementById('movable-card');
     
     if (holographicRarities.includes(card.rarity)) {
@@ -387,6 +406,11 @@ function applyHolographicEffect(card) {
         document.getElementById('movable-card').classList.remove('holo');
     }
 }
+
+
+
+
+
 
 
 
