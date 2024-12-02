@@ -1,7 +1,8 @@
+<details>
 # <summary> _¿De que trata?_</summary>
   
   Mi proyecto trata de una página en la cual puedes consultar cosas sobre las cartas de Pokemon, principalmente los precios de las cartas, aunque también te sirve para consultar los ataques y los elementos necesarios para realizar el ataque del Pokemon a la hora de jugarlo en el juego de mesa.
-
+</details>
 ¿Por que he elegido esta API?
 
   He elegido esta API porque realmente queria hacer lo de la API de pokemones a secas, pero ya lo eliguieron, y yo quería continuar con la tematica de Pokemon, asi es que encontre esta API y la use, aparte tambiém porque he empezado a jugar al juego de cartas de Pokemon en el movil y me servia. (Link de la API: https://pokemontcg.io/ ).
