@@ -1,4 +1,4 @@
-# _ ¿De que trata? _
+# _¿De que trata?_
   
   Mi proyecto trata de una página en la cual puedes consultar cosas sobre las cartas de Pokemon, principalmente los precios de las cartas, aunque también te sirve para consultar los ataques y los elementos necesarios para realizar el ataque del Pokemon a la hora de jugarlo en el juego de mesa.
 
