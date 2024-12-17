@@ -22,3 +22,8 @@
 
   Creo que me pondría un 7 / 7.5, ya que creo que cosas importantes como el uso de la API los he cumplido y la aplicación funciona como yo me esperaba, pero hay cosas que yo personalmente mejoraria si pudiera, lo primero de todo sería lo visual, ya que no soy experto en diseño y me ha quedado algo simple, pero mejorable, luego hay cosas que creo que las he hecho poco intuitiva, por ejemplo las cartas que no tienen precio no se abren, ya que son cartas que o son cartas que no valen la pena o no se han vendido, por lo que no se usan, entonces esas cartas al no usarse no las abre, pero eso ha sido decision mia, y la verdad que al final no me ha terminado de convencer la decision tomada. Luego es que lo he hecho todo en la misma página, que cuando abres una carta se pone por encima, creo que hubiera sido mejor que te diriguiera a otra página, pero esque queria que fuera asi, porque en mi cabeza lo tenia mejor, con una animación de que cuando apretaras la carta te hiciera un zoom mientars que la carta giraba, pero cuando hiba a hacer eso la verdad es que vi como se hacia y me tire para atras.
   He cumplido mis espectativas, si pero no del todo, creo que lo he hecho bastante bien para ser la primera vez que hago una cosa de este estilo con las APIs.
+
+# _Nota del trimestre:_
+  
+  La verdad es que me gustaria tener de nota final de la evaluacion un 8/8.5 ya que me he esforzado creo que bastante para obtener esa nota
+    
